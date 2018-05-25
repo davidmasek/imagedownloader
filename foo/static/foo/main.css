@@ -1,0 +1,10 @@
+.next {
+	font-size: 2em;
+	text-align: right;
+
+}
+
+.next a, .next a:link, .next a:hover {
+	color: inherit;
+	text-decoration: inherit;
+}

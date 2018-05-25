@@ -1,0 +1,30 @@
+{% extends 'foo/base.html' %}
+
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static "foo/main.css" %}">
+{% endblock head %}
+
+{% block content %}
+<div>
+	<h1>
+		Foo Lighters
+	</h1>
+	<p>You're here.</p>
+</div>
+<div>
+	<div id="chat">
+		<h1>
+			Chat
+		</h1>
+		<p><a href="{% url 'chat:home' %}">Off you go.</a></p>
+	</div>
+	<div id="image_downloader">
+		<h1>
+			Image Downloader
+		</h1>
+		<p><a href="{% url 'imagedownloader:home' %}">Right here.</a></p>
+	</div>
+</div>
+{% endblock %}

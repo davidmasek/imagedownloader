@@ -1,0 +1,103 @@
+{% extends 'imagedownloader/base.html' %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static "imagedownloader/main.css" %}">
+<script type="text/javascript" src="{% static "imagedownloader/main.js" %}"></script>
+{% endblock head %}
+
+{% block content %}
+
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'imagedownloader:home' %}">Image Downloader</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<main class="container">
+  <div class="jumbotron">
+
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <form method="POST" class="form" id="main-form">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="url-in">Url:</label>
+            <div class="input-group">
+              <input id="url-in" maxlength="100" name="url" required="" type="text"
+              placeholder="example.com" 
+              class="form-control input-lg">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  Preview
+                  <span class="glyphicon glyphicon-play"></span>
+                </button>
+              </span>
+            </div>
+          </div>
+        </form>
+        <div class="progress">
+          <div id="bar" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="row well hidden" id="download">
+    <div class="col-md-8 col-md-offset-2">
+      <div>
+        <p>
+          <button type="button" class="btn btn-default btn-lg" id="download-btn">
+            Download
+            <span class="glyphicon glyphicon-download-alt"></span>
+          </button>
+        </p>
+      </div>
+      <div id="results">
+      </div>
+    </div>
+  </div>
+  </div><div class="row well">
+    <div class="col-md-8 col-md-offset-2">
+      <div id="info">
+        <h1>How does it work?</h1>
+        <p>
+          Put the site you want to download images from into the box. Click 'Preview'. Click 'download'.
+        </p>
+        <p>
+          You can use either <em>https://www.example.com/</em> or <em>example.com</em> format.
+        </p>
+        <h1>Why?</h1>
+        <p>
+          There is a website with 20 images you want to download and no convenient way to do it.
+          I haven't found any free and easy way to do it online so I made this. 
+          Maybe you don't have any use for this, so here are some <a href="http://pbfcomics.com/comics/turtle-city/">turtles</a> instead.
+        </p>
+        <h1 id="donate">Donate</h1>
+        <p>
+          <em>Any</em> donation helps.
+        </p>
+        <p>
+          <!-- PAYPAL -->
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="BVDJ8RY2TAEXN">
+          <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+          <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+          </form>
+        </p>
+      </div>
+      <p>
+    </div>
+  </div>
+</main>
+<form id="down-form" class="hidden" method="POST" action="down">
+  {% csrf_token %}
+  <div id="urls-div"></div>
+
+</form>
+
+{% endblock content %}
